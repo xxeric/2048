@@ -1,0 +1,115 @@
+header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-evenly;
+  align-items: center;
+  width: 40rem;
+  height: 30rem;
+}
+
+/* 标题 */
+
+header .title {
+  width: 40%;
+  font-size: 7rem;
+  font-weight: 700;
+}
+
+/* 分数 */
+
+header .score {
+  display: flex;
+  justify-content: center;
+}
+
+.score .now {
+  margin-right: 1rem;
+}
+
+.score .now,
+.score .best {
+  position: relative;
+  padding: 20px;
+  height: 5.5rem;
+  line-height: 3rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #bbada0;
+}
+
+.now::before,
+.best::before {
+  content: 'SCORE';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%);
+  line-height: 3rem;
+  font-size: 1.5rem;
+  color: #eee4da;
+}
+
+.best::before {
+  content: 'BEST';
+}
+
+.score-add {
+  position: absolute;
+  right: 2rem;
+  font-size: 2rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+  color: rgba(119, 110, 101, 0.9);
+  z-index: 11;
+  animation: move-up 0.6s ease-in both;
+}
+
+@keyframes move-up {
+  from {
+    top: 2rem;
+    opacity: 1;
+  }
+  to {
+    top: -5rem;
+    opacity: 0;
+  }
+}
+
+/* 介绍 */
+
+header .manual {
+  padding: 2rem 0;
+  width: 70%;
+}
+
+.manual h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* 开始 */
+
+header .new-game {
+  float: right;
+  text-align: center;
+}
+
+.new-game .btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 1.8rem;
+  font-weight: 700;
+  font-family: 'Clear Sans', 'Open Sans', Helvetica, sans-serif;
+  border-radius: 5px;
+  color: #f9f6f2;
+  background-color: #8f7a66;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #7a6b5c;
+}

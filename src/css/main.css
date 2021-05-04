@@ -1,0 +1,274 @@
+main {
+  position: relative;
+  width: 50rem;
+  height: 50rem;
+  padding: 2rem;
+  border-radius: 0.8rem;
+  background-color: #bbada0;
+  touch-action: none;
+  user-select: none;
+  cursor: default;
+}
+
+/* 棋盘 */
+
+main .grid-box {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  z-index: 1;
+}
+
+.grid-box .grid-row {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.grid-row .grid-cell {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 0.5rem;
+  background-color: #ccc0b3;
+}
+
+/* 小方块 */
+
+main .tile-box {
+  position: absolute;
+  z-index: 2;
+}
+
+.tile-box .tile {
+  position: absolute;
+  width: 10rem;
+  height: 10rem;
+  line-height: 10rem;
+  font-size: 5.5rem;
+  text-align: center;
+  font-weight: 700;
+  border-radius: 0.5rem;
+  background-color: #eee4da;
+  z-index: 10;
+  transition: all 150ms ease;
+}
+
+.tile[data-pos='0'] {
+  left: 0;
+  top: 0;
+}
+
+.tile[data-pos='1'] {
+  left: 12rem;
+  top: 0;
+}
+
+.tile[data-pos='2'] {
+  left: 24rem;
+  top: 0;
+}
+
+.tile[data-pos='3'] {
+  left: 36rem;
+  top: 0;
+}
+
+.tile[data-pos='4'] {
+  left: 0;
+  top: 12rem;
+}
+
+.tile[data-pos='5'] {
+  left: 12rem;
+  top: 12rem;
+}
+
+.tile[data-pos='6'] {
+  left: 24rem;
+  top: 12rem;
+}
+
+.tile[data-pos='7'] {
+  left: 36rem;
+  top: 12rem;
+}
+
+.tile[data-pos='8'] {
+  left: 0;
+  top: 24rem;
+}
+
+.tile[data-pos='9'] {
+  left: 12rem;
+  top: 24rem;
+}
+
+.tile[data-pos='10'] {
+  left: 24rem;
+  top: 24rem;
+}
+
+.tile[data-pos='11'] {
+  left: 36rem;
+  top: 24rem;
+}
+
+.tile[data-pos='12'] {
+  left: 0;
+  top: 36rem;
+}
+
+.tile[data-pos='13'] {
+  left: 12rem;
+  top: 36rem;
+}
+
+.tile[data-pos='14'] {
+  left: 24rem;
+  top: 36rem;
+}
+
+.tile[data-pos='15'] {
+  left: 36rem;
+  top: 36rem;
+}
+
+.tile[data-val] {
+  color: #f9f6f2;
+}
+
+.tile[data-val='2'],
+.tile[data-val='4'] {
+  color: #776e65;
+}
+
+.tile[data-val='128'],
+.tile[data-val='256'],
+.tile[data-val='512'] {
+  font-size: 4.5rem;
+}
+
+.tile[data-val='1024'],
+.tile[data-val='2048'] {
+  font-size: 3.5rem;
+}
+
+.tile[data-val='2'] {
+  background-color: #eee4da;
+}
+
+.tile[data-val='4'] {
+  background-color: #ede0c8;
+}
+
+.tile[data-val='8'] {
+  background-color: #f2b179;
+}
+
+.tile[data-val='16'] {
+  background-color: #f59563;
+}
+
+.tile[data-val='32'] {
+  background-color: #f67c5f;
+}
+
+.tile[data-val='64'] {
+  background-color: #f65e3b;
+}
+
+.tile[data-val='128'] {
+  background-color: #edcf72;
+}
+
+.tile[data-val='256'] {
+  background-color: #edcc61;
+  box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.tile[data-val='512'] {
+  background-color: #edc850;
+  box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.tile[data-val='1024'] {
+  background-color: #edc53f;
+  box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.tile[data-val='2048'] {
+  background-color: #edc22e;
+  box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+}
+
+.tile.tile-new {
+  animation: 200ms appear ease 100ms backwards;
+}
+
+.tile.tile-merge {
+  animation: 200ms disappear linear;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes disappear {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* 游戏结束 */
+
+main .game-message {
+  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background-color: rgba(238, 228, 218, 0.5);
+  z-index: 7;
+  animation: fade-in 800ms ease 1200ms both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.game-message p {
+  height: 20rem;
+  line-height: 20rem;
+  margin-top: 15rem;
+  font-size: 5rem;
+  font-weight: 700;
+}
+
+.game-message.failure,
+.game-message.won {
+  display: block;
+}

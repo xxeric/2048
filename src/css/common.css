@@ -1,0 +1,30 @@
+/* 公共样式 */
+
+@import url(../assets/fonts/clear-sans.css);
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font: 1.6rem/1.5 -apple-system, 'Clear Sans', 'Open Sans', BlinkMacSystemFont, Helvetica,
+    sans-serif;
+  color: #776e65;
+  background-color: #faf8ef;
+}
+
+#container {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: space-evenly;
+  align-items: center;
+  width: 90%;
+  height: 100vh;
+  min-width: 50rem;
+  max-width: 115rem;
+}

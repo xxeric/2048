@@ -1,0 +1,48 @@
+@media screen and (max-width: 1023px) {
+  html {
+    font-size: 8.5px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  html {
+    font-size: 7.5px;
+  }
+}
+
+@media screen and (max-width: 413px) {
+  html {
+    font-size: 6.5px;
+  }
+}
+
+@media screen and (max-width: 374px) {
+  html {
+    font-size: 5.5px;
+  }
+}
+
+@media screen and (max-width: 917px) {
+  #container {
+    min-width: 50rem;
+    max-height: 90vh;
+  }
+  header {
+    width: 50rem;
+    margin-bottom: 5px;
+  }
+  footer {
+    width: 50rem;
+  }
+}
+
+@media screen and (min-height: 812px) {
+  #container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 50rem;
+    height: 80vh;
+  }
+}
