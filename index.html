@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2048</title>
+  </head>
+  <body>
+    <div id="container">
+      <header>
+        <!-- 标题 -->
+        <h1 class="title">2048</h1>
+
+        <!-- 分数 -->
+        <div class="score">
+          <div class="number now">
+            0
+            <!-- <div class="score-add">+4</div> -->
+          </div>
+          <div class="number best">0</div>
+        </div>
+
+        <!-- 玩法介绍 -->
+        <div class="manual">
+          <h2>玩法介绍：</h2>
+          <p>使用方向按键或滑动手指移动方块，出现 2048 时获胜！</p>
+        </div>
+
+        <!-- 开始 -->
+        <div class="new-game">
+          <button class="btn">New Game</button>
+        </div>
+      </header>
+
+      <main>
+        <!-- 棋盘 -->
+        <div class="grid-box">
+          <div class="grid-row">
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+          </div>
+          <div class="grid-row">
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+          </div>
+          <div class="grid-row">
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+          </div>
+          <div class="grid-row">
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+          </div>
+        </div>
+
+        <!-- 方块 -->
+        <div class="tile-box"></div>
+
+        <!-- 游戏信息 -->
+        <div class="game-message">
+          <p></p>
+        </div>
+      </main>
+
+      <footer>
+        <p>
+          Written by
+          <a href="https://github.com/cnlmx" target="_blank">Cnlmx</a>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
