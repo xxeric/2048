@@ -141,28 +141,14 @@ main .tile-box {
   color: #f9f6f2;
 }
 
-.tile[data-val='2'],
-.tile[data-val='4'] {
-  color: #776e65;
-}
-
-.tile[data-val='128'],
-.tile[data-val='256'],
-.tile[data-val='512'] {
-  font-size: 4.5rem;
-}
-
-.tile[data-val='1024'],
-.tile[data-val='2048'] {
-  font-size: 3.5rem;
-}
-
 .tile[data-val='2'] {
   background-color: #eee4da;
+  color: #776e65;
 }
 
 .tile[data-val='4'] {
   background-color: #ede0c8;
+  color: #776e65;
 }
 
 .tile[data-val='8'] {
@@ -182,25 +168,30 @@ main .tile-box {
 }
 
 .tile[data-val='128'] {
+  font-size: 4.5rem;
   background-color: #edcf72;
 }
 
 .tile[data-val='256'] {
+  font-size: 4.5rem;
   background-color: #edcc61;
   box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
 }
 
 .tile[data-val='512'] {
+  font-size: 4.5rem;
   background-color: #edc850;
   box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
 }
 
 .tile[data-val='1024'] {
+  font-size: 3.5rem;
   background-color: #edc53f;
   box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
 }
 
 .tile[data-val='2048'] {
+  font-size: 3.5rem;
   background-color: #edc22e;
   box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.4);
 }
