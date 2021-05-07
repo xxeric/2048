@@ -19,6 +19,7 @@ module.exports = {
     inline: true,
     hot: true,
     quiet: true,
+    clientLogLevel: 'none',
   },
   devtool: 'eval-source-map',
 }
