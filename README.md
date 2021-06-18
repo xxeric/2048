@@ -1,26 +1,42 @@
-# 2048
+# 2048 Game Online
 
-> Web Game
+[![license](https://img.shields.io/badge/license-MIT-blue)](./LICENSE) [![author](https://img.shields.io/badge/author-CNLMX-orange)](https://github.com/cnlmx)
 
-### 技术
+## Feature
 
-通过原生 JavaScript 语法（部分 ES6 语法）实现
+基于原生  JavaScript + ES6 语法完成
 
-基于 Webpack 搭建
+使用 Webpack 搭建
 
-### 适配
+通过 CSS3 实现动画
+
+实现本地存储
 
 响应式布局设计
 
 适配移动端
 
-### 链接
+## Preview
+
+### Web
+
+<div align=center><img src="https://gitee.com/cnlmx/blog/raw/master/img/204801.jpg" width="600">
+</div>
+
+
+### Mobile
+
+<div align=center>
+  <img src="https://gitee.com/cnlmx/blog/raw/master/img/204802.png" width="300">
+</div>
+
+
+## Usage
 
 在线地址：https://cnlmx.top/2048
 
 详细讲解：https://cnlmx.top
 
-### 游戏截图
+## License
 
-<img src="https://gitee.com/cnlmx/blogImg/raw/master/img/2048.jpg" width="600">
-
+[MIT](./LICENSE)
