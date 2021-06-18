@@ -1,10 +1,5 @@
 // css 文件
-import './css/reset.css'
-import './css/common.css'
-import './css/header.css'
-import './css/main.css'
-import './css/footer.css'
-import './css/media.css'
+import './assets/css/index.css'
 
 // js 文件
 import './js/application'

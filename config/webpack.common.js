@@ -21,7 +21,7 @@ const commonConfig = {
             loader: 'html-withimg-loader',
           },
           {
-            test: /\.(eot|woff2?|ttf|svg)$/,
+            test: /\.(eot|woff2?|ttf)$/,
             type: 'asset',
             generator: {
               publicPath: '../',
