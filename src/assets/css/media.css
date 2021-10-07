@@ -8,6 +8,12 @@
   html {
     font-size: 7.5px;
   }
+  header .score .number {
+    line-height: 0.9em;
+  }
+  header .score .number::before {
+    line-height: 2.5em;
+  }
 }
 
 @media screen and (max-width: 413px) {
@@ -24,25 +30,19 @@
 
 @media screen and (max-width: 917px) {
   #container {
-    min-width: 50rem;
     max-height: 90vh;
   }
   header {
     width: 50rem;
-    margin-bottom: 5px;
+    margin-bottom: 0.5rem;
   }
   footer {
-    width: 50rem;
+    margin-top: 1rem;
   }
 }
 
 @media screen and (min-height: 812px) {
   #container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 50rem;
     height: 80vh;
   }
 }

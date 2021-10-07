@@ -6,8 +6,6 @@ main {
   border-radius: 0.8rem;
   background-color: #bbada0;
   touch-action: none;
-  user-select: none;
-  cursor: default;
 }
 
 /* 棋盘 */
@@ -18,20 +16,14 @@ main .grid-box {
   right: 0;
   top: 0;
   bottom: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: repeat(4, 10rem);
+  grid-template-rows: repeat(4, 10rem);
+  place-content: space-evenly;
   z-index: 1;
 }
 
-.grid-box .grid-row {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.grid-row .grid-cell {
-  width: 10rem;
-  height: 10rem;
+.grid-box .grid-cell {
   border-radius: 0.5rem;
   background-color: #ccc0b3;
 }
@@ -197,11 +189,11 @@ main .tile-box {
 }
 
 .tile.tile-new {
-  animation: 200ms appear ease 100ms backwards;
+  animation: appear 200ms ease 100ms backwards;
 }
 
 .tile.tile-merge {
-  animation: 200ms disappear linear;
+  animation: disappear 200ms linear;
 }
 
 @keyframes appear {

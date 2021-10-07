@@ -23,12 +23,7 @@ header .score {
   justify-content: center;
 }
 
-.score .now {
-  margin-right: 1rem;
-}
-
-.score .now,
-.score .best {
+.score .number {
   position: relative;
   padding: 20px;
   height: 5.5rem;
@@ -41,20 +36,23 @@ header .score {
   background-color: #bbada0;
 }
 
-.now::before,
-.best::before {
-  content: 'SCORE';
+.number::before {
+  content: 'BEST';
   position: absolute;
-  top: 0;
+  top: -1px;
   left: 50%;
   transform: translate(-50%);
   line-height: 3rem;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: #eee4da;
 }
 
-.best::before {
-  content: 'BEST';
+.number.now {
+  margin-right: 1rem;
+}
+
+.number.now::before {
+  content: 'SCORE';
 }
 
 .score-add {
@@ -93,13 +91,7 @@ header .manual {
 
 /* 开始 */
 
-header .new-game {
-  float: right;
-  text-align: center;
-}
-
-.new-game .btn {
-  width: 100%;
+header .new-game .btn {
   padding: 10px;
   font-size: 1.8rem;
   font-weight: 700;
@@ -110,6 +102,6 @@ header .new-game {
   cursor: pointer;
 }
 
-.btn:hover {
+.new-game .btn:hover {
   background-color: #7a6b5c;
 }
