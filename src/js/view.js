@@ -3,11 +3,11 @@ import $ from './utils'
 
 export default class View {
   constructor() {
-    this.tileBox = $('.tile-box')[0]
-    this.scoreNow = $('.score .now')[0]
-    this.scoreBest = $('.score .best')[0]
-    this.msgBox = $('.game-message')[0]
-    this.msgText = $('.game-message p')[0]
+    this.scoreNow = $('header .score .now')
+    this.scoreBest = $('header .score .best')
+    this.tileBox = $('main .tile-box')
+    this.msgBox = $('main .game-message')
+    this.msgText = $('main .game-message p')
   }
 
   /**
@@ -20,7 +20,7 @@ export default class View {
 
   /**
    * 清除所有子元素
-   * @param {Node} box 指定的元素
+   * @param {Node} box 父元素盒
    */
   clearBox(box) {
     while (box.firstChild) {
@@ -30,11 +30,11 @@ export default class View {
 
   /**
    * 获取方块
-   * @param {Number} pos DATA.tiles[index] == DATA.tiles[index].pos
+   * @param {Number} pos
    * @returns dom 元素（指定的方块）
    */
   getTile(pos) {
-    return $(`.tile[data-pos='${pos}']`)[0]
+    return $(`.tile[data-pos='${pos}']`)
   }
 
   /**
@@ -76,7 +76,7 @@ export default class View {
   }
 
   /**
-   * 更新方块数值，并定时删除类名
+   * 更新方块数字，并定时删除类名
    * @param {Number} pos 方块位置
    */
   setValue(pos, value) {
@@ -114,6 +114,7 @@ export default class View {
 
   /**
    * 更新当前分数与获得分数
+   * @param {Number} point 每次获得的分数
    */
   updateNow(point) {
     // 1.清除当前分数

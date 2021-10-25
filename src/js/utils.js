@@ -1,3 +1,3 @@
 export default function $(elem) {
-  return document.querySelectorAll(elem)
+  return document.querySelector(elem)
 }

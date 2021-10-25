@@ -40,16 +40,14 @@ export default class Interaction extends Main {
    * 触摸移动
    */
   touch() {
-    this.touchMoveDir($('main')[0], dir => {
-      this.moveTile(dir)
-    })
+    this.touchMoveDir($('main'), dir => this.moveTile(dir))
   }
 
   /**
    * 点击按钮
    */
   newGame() {
-    this.addEvent($('.btn')[0], 'click', e => {
+    this.addEvent($('.btn'), 'click', e => {
       e.preventDefault()
       this.start()
     })
@@ -62,9 +60,7 @@ export default class Interaction extends Main {
    * @param {Function} handle 处理函数
    */
   addEvent(elem, type, handle) {
-    elem.addEventListener(type, function (e) {
-      handle(e)
-    })
+    elem.addEventListener(type, e => handle(e), false)
   }
 
   /**
@@ -83,20 +79,20 @@ export default class Interaction extends Main {
     }
 
     // 1.触摸开始，记录初始位置
-    this.addEvent(elem, 'touchstart', function (e) {
+    this.addEvent(elem, 'touchstart', e => {
       touchPos.beforeX = e.touches[0].clientX
       touchPos.beforeY = e.touches[0].clientY
     })
 
     // 2.持续移动，记录改变的位置
-    this.addEvent(elem, 'touchmove', function (e) {
+    this.addEvent(elem, 'touchmove', e => {
       move = true
       touchPos.afterX = e.touches[0].clientX
       touchPos.afterY = e.touches[0].clientY
     })
 
     // 3.触摸结束，计算移动距离
-    this.addEvent(elem, 'touchend', function (e) {
+    this.addEvent(elem, 'touchend', () => {
       if (!move) return
       move = false
 

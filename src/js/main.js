@@ -84,7 +84,7 @@ export default class Main extends View {
   }
 
   /**
-   * 定义方块数据，并添加到页面
+   * 存储方块数据，并添加到页面
    * @param {Number} index 方块位置
    * @param {Number} value 方块数值
    */
@@ -115,7 +115,7 @@ export default class Main extends View {
       chunk = this.chunkY()
     }
 
-    // 3.向右或向下滑动，数组内部顺序进行翻转
+    // 3.向右或向下滑动，嵌套数组的内部顺序进行翻转
     if (dir === 2 || dir === 3) {
       chunk = this.arrayInnerReverse(chunk)
     }
@@ -177,14 +177,12 @@ export default class Main extends View {
   }
 
   /**
-   * 对 item 的成员进行翻转
+   * 对 chunk 内的嵌套数组成员顺序进行翻转
    * @param {Array} chunk 分组后的数组
    * @returns {Array} 翻转后的新数组
    */
   arrayInnerReverse(chunk) {
-    chunk.forEach((itemArr, index) => {
-      chunk[index] = itemArr.reverse()
-    })
+    chunk.forEach(itemArr => itemArr.reverse())
 
     return chunk
   }
@@ -203,71 +201,71 @@ export default class Main extends View {
       this.updateBest()
     }
 
-    // 3.将新增的分数更新到页面
+    // 3.更新当前分数和新获得分数
     this.updateNow(point)
   }
 
   /**
    * 方块移动过程
    * @param {Array} itemArr groups 的每一行
-   * @param {Array} optionPos 二维数组 POSITION 中 dir 的每一行
+   * @param {Array} linePos 二维数组 POSITION 中 dir 的每一行
    * @returns 分数
    */
-  moveInfo(itemArr, optionPos) {
+  moveInfo(itemArr, linePos) {
     // 1.初始化变量，保存每次获得的分数
-    let point = 0
+    let _point = 0
 
-    // 2.筛选在当前行中，数值不为 0 的网格，即存在的方块
-    let existTiles = itemArr.filter(elem => elem.val !== 0)
+    // 2.筛选在当前行中，数值不为 0 的网格，即已存在的方块
+    let _existTiles = itemArr.filter(elem => elem.val !== 0)
 
     // 3.根据当前行的方块个数，进行不同的处理
-    switch (existTiles.length) {
+    switch (_existTiles.length) {
       // 有 1 个方块时
       case 1:
-        this.normalMove(existTiles, optionPos)
+        this.normalMove(_existTiles, linePos)
         break
       // 有 2 个方块时
       case 2:
-        point += this.twoTileMove(existTiles, optionPos, point)
+        _point += this.twoTileMove(_existTiles, linePos, _point)
         break
       // 有 3 个方块时
       case 3:
-        point += this.threeTileMove(existTiles, optionPos, point)
+        _point += this.threeTileMove(_existTiles, linePos, _point)
         break
       // 有 4 个方块时
       case 4:
-        point += this.fourTileMove(existTiles, optionPos, point)
+        _point += this.fourTileMove(_existTiles, linePos, _point)
         break
       // 没有方块时
       default:
-        point += 0
+        _point += 0
     }
 
-    return point
+    return _point
   }
 
   /**
    * 正常移动
-   * @param {Array} tiles 每行 val !== 0 的方块组成的数组
-   * @param {Array} optionPos 二维数组 POSITION[dir] 中存储位置的数组
+   * @param {Array} existTiles 每行 val !== 0 的方块组成的数组
+   * @param {Array} linePos 二维数组 POSITION[dir] 中存储位置的数组
    */
-  normalMove(tiles, optionPos) {
-    tiles.forEach((elem, index) => {
-      this.updatePosition(tiles[index].pos, optionPos[index])
+  normalMove(existTiles, linePos) {
+    existTiles.forEach((elem, index) => {
+      this.updatePosition(elem.pos, linePos[index])
     })
   }
 
   /**
    * 当前行有 2 个方块时
-   * @param {Array} tiles 当前行中数值不为 0 的网格
-   * @param {Array}} optionPos 可选位置
+   * @param {Array} existTiles 当前行中数值不为 0 的网格
+   * @param {Array}} linePos 可选位置
    * @param {Number} point 每次增加的分数
    */
-  twoTileMove(tiles, optionPos, point) {
+  twoTileMove(existTiles, linePos, point) {
     // 1.两个方块相同
-    if (tiles[0].val === tiles[1].val) {
-      // 合并到 optionPos[0] 记录的位置
-      this.mergeMove(tiles, optionPos, 0, 1, 0)
+    if (existTiles[0].val === existTiles[1].val) {
+      // 合并到 linePos[0] 记录的位置
+      this.mergeMove(existTiles, linePos, 0, 1, 0)
 
       // 增加分数
       point += CONFIG.point
@@ -275,7 +273,7 @@ export default class Main extends View {
 
     // 2.两个方块不同
     else {
-      this.normalMove(tiles, optionPos)
+      this.normalMove(existTiles, linePos)
     }
 
     // 3.返回增加的分数
@@ -284,36 +282,36 @@ export default class Main extends View {
 
   /**
    * 当前行有 3 个方块时
-   * @param {Array} tiles 当前行中数值不为 0 的网格
-   * @param {Array}} optionPos 可选位置
+   * @param {Array} existTiles 当前行中数值不为 0 的网格
+   * @param {Array}} linePos 可选位置
    * @param {Number} point 每次增加的分数
    */
-  threeTileMove(tiles, optionPos, point) {
+  threeTileMove(existTiles, linePos, point) {
     // 1.第一个方块和第二个方块相同
-    if (tiles[0].val === tiles[1].val) {
-      // 第一个和第二个合并到 optionPos[0] 记录的位置
-      this.mergeMove(tiles, optionPos, 0, 1, 0)
+    if (existTiles[0].val === existTiles[1].val) {
+      // 第一个和第二个合并到 linePos[0] 记录的位置
+      this.mergeMove(existTiles, linePos, 0, 1, 0)
 
-      // 第三个方块往前移一位，到 optionPos[1] 记录的位置
-      this.updatePosition(tiles[2].pos, optionPos[1])
+      // 第三个方块往前移一位，到 linePos[1] 记录的位置
+      this.updatePosition(existTiles[2].pos, linePos[1])
 
       // 增加分数
       point += CONFIG.point
     }
     // 2.第二个方块和第三个方块相同
-    else if (tiles[1].val === tiles[2].val) {
-      // 第一个方块到 optionPos[0] 记录的位置
-      this.updatePosition(tiles[0].pos, optionPos[0])
+    else if (existTiles[1].val === existTiles[2].val) {
+      // 第一个方块到 linePos[0] 记录的位置
+      this.updatePosition(existTiles[0].pos, linePos[0])
 
-      // 第二个和第三个合并到 optionPos[1] 记录的位置
-      this.mergeMove(tiles, optionPos, 1, 2, 1)
+      // 第二个和第三个合并到 linePos[1] 记录的位置
+      this.mergeMove(existTiles, linePos, 1, 2, 1)
 
       // 增加分数
       point += CONFIG.point
     }
     // 3.无法合并时
     else {
-      this.normalMove(tiles, optionPos)
+      this.normalMove(existTiles, linePos)
     }
 
     // 4.返回增加的分数
@@ -322,47 +320,47 @@ export default class Main extends View {
 
   /**
    * 当前行有 4 个方块时
-   * @param {Array} tiles 当前行中数值不为 0 的网格
-   * @param {Array}} optionPos 可选位置
+   * @param {Array} existTiles 当前行中数值不为 0 的网格
+   * @param {Array}} linePos 可选位置
    * @param {Number} point 每次增加的分数
    */
-  fourTileMove(tiles, optionPos, point) {
+  fourTileMove(existTiles, linePos, point) {
     // 1.第一个方块和第二个方块相同
-    if (tiles[0].val === tiles[1].val) {
-      // 第一个和第二个合并到 optionPos[0] 记录的位置
-      this.mergeMove(tiles, optionPos, 0, 1, 0)
+    if (existTiles[0].val === existTiles[1].val) {
+      // 第一个和第二个合并到 linePos[0] 记录的位置
+      this.mergeMove(existTiles, linePos, 0, 1, 0)
 
       // 增加分数
       point += CONFIG.point
 
       // 判断第三个和第四个是否相同
-      if (tiles[2].val === tiles[3].val) {
-        // 相同，合并到 optionPos[1] 记录的位置
-        this.mergeMove(tiles, optionPos, 2, 3, 1)
+      if (existTiles[2].val === existTiles[3].val) {
+        // 相同，合并到 linePos[1] 记录的位置
+        this.mergeMove(existTiles, linePos, 2, 3, 1)
         point += CONFIG.point
       } else {
         // 不相同
-        // tiles[2] 的位置改为 optionPos[1]
-        // tiles[3] 的位置改为 optionPos[2]
-        this.updatePosition(tiles[2].pos, optionPos[1])
-        this.updatePosition(tiles[3].pos, optionPos[2])
+        // existTiles[2] 的位置改为 linePos[1]
+        // existTiles[3] 的位置改为 linePos[2]
+        this.updatePosition(existTiles[2].pos, linePos[1])
+        this.updatePosition(existTiles[3].pos, linePos[2])
       }
     }
     // 2.第二个方块和第三个方块相同
-    else if (tiles[1].val === tiles[2].val) {
+    else if (existTiles[1].val === existTiles[2].val) {
       // 第二个和第三个合并到 optionalPos[1] 记录的位置
-      this.mergeMove(tiles, optionPos, 1, 2, 1)
+      this.mergeMove(existTiles, linePos, 1, 2, 1)
 
-      // 第四个往前移一位，到 optionPos[2] 记录的位置
-      this.updatePosition(tiles[3].pos, optionPos[2])
+      // 第四个往前移一位，到 linePos[2] 记录的位置
+      this.updatePosition(existTiles[3].pos, linePos[2])
 
       // 增加分数
       point += CONFIG.point
     }
     // 3.第三个方块和第四个方块相同
-    else if (tiles[2].val === tiles[3].val) {
+    else if (existTiles[2].val === existTiles[3].val) {
       // 第三个和第四个合并到 optionalPos[2] 记录的位置
-      this.mergeMove(tiles, optionPos, 2, 3, 2)
+      this.mergeMove(existTiles, linePos, 2, 3, 2)
 
       point += CONFIG.point
     }
@@ -373,22 +371,22 @@ export default class Main extends View {
 
   /**
    * 合并移动
-   * @param {Array} tiles 每行 val !== 0 的方块组成的数组
-   * @param {Array} optionPos 二维数组 POSITION[dir] 中存储位置的数组
-   * @param {Number} index1 第一个方块在 tiles 中的索引
-   * @param {Number} index2 第二个方块在 tiles 中的索引
-   * @param {Number} indexMerge 合并的方块在 optionPos 中的索引
+   * @param {Array} existTiles 每行 val !== 0 的方块组成的数组
+   * @param {Array} linePos 二维数组 POSITION[dir] 中存储位置的数组
+   * @param {Number} index1 第一个方块在 existTiles 中的索引
+   * @param {Number} index2 第二个方块在 existTiles 中的索引
+   * @param {Number} indexMerge 合并的方块在 linePos 中的索引
    */
-  mergeMove(tiles, optionPos, index1, index2, indexMerge) {
+  mergeMove(existTiles, linePos, index1, index2, indexMerge) {
     // 1.获得合并后新的数值和位置
-    let newVal = tiles[index1].val + tiles[index2].val
-    let newPos = optionPos[indexMerge]
+    let newVal = existTiles[index1].val + existTiles[index2].val
+    let newPos = linePos[indexMerge]
 
-    // 2.移除一个方块
-    this.undoTile(tiles[index1].pos)
+    // 2.移除前一个方块
+    this.undoTile(existTiles[index1].pos)
 
-    // 3.更新另一个方块的位置和数值，作为合并后的新方块
-    this.updatePosition(tiles[index2].pos, newPos)
+    // 3.更新后一个方块的位置和数值，作为合并后的新方块
+    this.updatePosition(existTiles[index2].pos, newPos)
     this.updateValue(newPos, newVal)
   }
 
@@ -404,10 +402,10 @@ export default class Main extends View {
     // 2.打开移动开关
     this.isMove = true
 
-    // 3.之前位置的数值赋值到当前位置
+    // 3.旧位置的数值赋值到新位置
     this.cell[newPos].val = this.cell[oldPos].val
 
-    // 4.之前位置的数值重置为 0
+    // 4.旧位置的数值重置为 0
     this.cell[oldPos].val = 0
 
     // 5.更新到页面
@@ -486,9 +484,9 @@ export default class Main extends View {
    */
   checkChunk(chunk, isSame) {
     if (isSame) return
-    isSame = chunk.some(item => this.checkItem(item))
+    let result = chunk.some(itemArr => this.checkItem(itemArr))
 
-    return isSame
+    return result
   }
 
   /**
@@ -497,7 +495,7 @@ export default class Main extends View {
    * @returns {Boolean} item 中是否存在临近位置相同的值
    */
   checkItem(itemArr) {
-    let exist = itemArr.some((elem, index, itemArr) => {
+    let _exist = itemArr.some((elem, index, itemArr) => {
       // 倒数第二个和最后一个比较完成后就退出
       if (index === itemArr.length - 1) return
 
@@ -505,7 +503,7 @@ export default class Main extends View {
       return elem.val === itemArr[index + 1].val
     })
 
-    return exist
+    return _exist
   }
 
   /**
