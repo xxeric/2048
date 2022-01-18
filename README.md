@@ -1,6 +1,6 @@
 # 2048 Game Online
 
-[![license](https://img.shields.io/badge/license-MIT-blue)](./LICENSE) [![author](https://img.shields.io/badge/author-CNLMX-orange)](https://github.com/cnlmx)
+[![license](https://img.shields.io/badge/license-MIT-blue)](./LICENSE) [![author](https://img.shields.io/badge/author-Eric-orange)](https://github.com/xxeric)
 
 ## Feature
 
@@ -20,14 +20,14 @@
 
 ### Web
 
-<div align=center><img src="https://gitee.com/cnlmx/blog/raw/master/img/204801.jpg" width="600">
+<div align=center><img src="https://gitee.com/xxeric/blog/raw/master/img/204801.jpg" width="600">
 </div>
 
 
 ### Mobile
 
 <div align=center>
-  <img src="https://gitee.com/cnlmx/blog/raw/master/img/204802.png" width="300">
+  <img src="https://gitee.com/xxeric/blog/raw/master/img/204802.png" width="300">
 </div>
 
 

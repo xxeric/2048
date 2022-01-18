@@ -9,7 +9,7 @@
     "serve": "webpack serve --config ./config/webpack.common.js --env development"
   },
   "keywords": [],
-  "author": "cnlmx",
+  "author": "xxeric",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.14.0",
