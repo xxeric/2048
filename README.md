@@ -20,22 +20,22 @@
 
 ### Web
 
-<div align=center><img src="https://gitee.com/xxeric/blog/raw/master/img/204801.jpg" width="600">
+<div align=center><img src="https://raw.githubusercontent.com/xxeric/blog/master/img/204801.jpg" width="600">
 </div>
 
 
 ### Mobile
 
 <div align=center>
-  <img src="https://gitee.com/xxeric/blog/raw/master/img/204802.png" width="300">
+  <img src="https://raw.githubusercontent.com/xxeric/blog/master/img/204802.png" width="300">
 </div>
 
 
 ## Usage
 
-在线地址：https://cnlmx.top/2048
+在线地址：https://ieric.top/2048
 
-详细讲解：https://cnlmx.top
+详细讲解：https://ieric.top
 
 ## License
 
